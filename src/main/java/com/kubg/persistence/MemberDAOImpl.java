@@ -1,0 +1,29 @@
+package com.kubg.persistence;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.kubg.domain.MemberVO;
+
+@Repository
+public class MemberDAOImpl implements MemberDAO{
+
+	@Inject
+	private SqlSession sql;
+	
+	private static String namespace = "com.kubg.mappers.memberMapper";
+	
+	
+	//로그인
+	@Override  
+	public MemberVO signin(MemberVO vo) throws Exception {
+		return sql.selectOne(namespace + ".signin", vo);
+		
+	}
+
+
+	
+	
+}
